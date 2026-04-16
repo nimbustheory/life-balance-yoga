@@ -209,12 +209,12 @@ const ADMIN_CHARTS = {
 
 const AppContext = createContext(null);
 
-function PageHero({ image, title, subtitle }) {
+function PageHero({ image, title, subtitle, height = 220 }) {
   const [imgError, setImgError] = useState(false);
   const isUrl = typeof image === "string" && (image.startsWith("http") || image.startsWith("/"));
   const showImage = isUrl && !imgError;
   return (
-    <div style={{ height: 220, position: "relative", overflow: "hidden", marginBottom: 16 }}>
+    <div style={{ height, position: "relative", overflow: "hidden", marginBottom: 16 }}>
       {showImage ? (
         <>
           <img src={image} alt="" loading="lazy" onError={() => setImgError(true)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7)" }} />
@@ -225,7 +225,7 @@ function PageHero({ image, title, subtitle }) {
       )}
       <div style={{ position: "relative", padding: "0 20px", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%", paddingBottom: 24 }}>
         <h1 style={{ fontFamily: "'Merriweather', serif", fontSize: 56, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.05 }}>{title}</h1>
-        {subtitle && <p style={{ fontSize: 14, color: "rgba(255,255,255,.85)", margin: "8px 0 0", maxWidth: "85%", lineHeight: 1.4 }}>{subtitle}</p>}
+        {subtitle && <p style={{ fontSize: 14, color: "rgba(255,255,255,.85)", margin: "8px 0 0", maxWidth: "92%", lineHeight: 1.4 }}>{subtitle}</p>}
       </div>
     </div>
   );
@@ -358,7 +358,7 @@ function HomePage() {
 
   return (
     <div>
-      <PageHero image={HERO_IMAGES.home || GRADIENTS.home} title={<>{STUDIO_CONFIG.heroLine1}<br/><span style={{ color: T.accent, fontStyle: "italic" }}>{STUDIO_CONFIG.heroLine2}</span></>} subtitle={STUDIO_CONFIG.description} />
+      <PageHero image={HERO_IMAGES.home || GRADIENTS.home} height={286} title={<>{STUDIO_CONFIG.heroLine1}<br/><span style={{ color: T.accent, fontStyle: "italic" }}>{STUDIO_CONFIG.heroLine2}</span></>} subtitle={STUDIO_CONFIG.description} />
 
       <section style={{ padding: "20px 16px 0", position: "relative", zIndex: 10 }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
